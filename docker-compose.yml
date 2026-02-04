@@ -4,7 +4,7 @@ services:
     image: nginx:alpine
     container_name: launchbi_app
     volumes:
-      # O Nginx precisa ler de dentro da pasta dist que você enviou
+      # MAPEAMENTO: Aponta para a pasta dist que contém o index.html
       - ./dist:/usr/share/nginx/html
     networks:
       - ruliannet
