@@ -8,7 +8,6 @@ import { Users, DollarSign, Target, Globe } from 'lucide-react';
 const COLORS = ['#2563eb', '#7c3aed', '#db2777', '#059669', '#ca8a04'];
 const PIE_COLORS = ['#3b82f6', '#8b5cf6']; 
 
-// Adicionado ": any" para o TypeScript não travar o build
 const Dashboard = ({ data }: any) => {
   const totalLeads = data?.length || 19;
   const investimento = 1500; 
@@ -31,6 +30,7 @@ const Dashboard = ({ data }: any) => {
 
   return (
     <div className="p-6 bg-slate-950 text-white min-h-screen">
+      {/* HEADER MÉTRICAS */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <MetricCard title="Total de Leads" value={totalLeads} icon={<Users />} color="bg-blue-600" />
         <MetricCard title="Investimento" value={`R$ ${investimento}`} icon={<DollarSign />} color="bg-purple-600" />
@@ -39,9 +39,10 @@ const Dashboard = ({ data }: any) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* GRÁFICO DE ONDAS - ALTURA FIXA APLICADA */}
         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
           <h3 className="text-lg font-semibold mb-4">Pico de Entrada (24h)</h3>
-          <div className="h-64">
+          <div className="h-[300px] w-full"> 
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={dataHoras}>
                 <defs>
@@ -58,9 +59,10 @@ const Dashboard = ({ data }: any) => {
           </div>
         </div>
 
+        {/* GRÁFICO DE ORIGEM - ALTURA FIXA APLICADA */}
         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
           <h3 className="text-lg font-semibold mb-4">Origem dos Leads</h3>
-          <div className="h-64">
+          <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dataOrigem}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -73,9 +75,10 @@ const Dashboard = ({ data }: any) => {
           </div>
         </div>
 
+        {/* GRÁFICO ADS VS PLAYER - ALTURA FIXA APLICADA */}
         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
           <h3 className="text-lg font-semibold mb-4">Tipo de Tráfego (ADS vs Orgânico)</h3>
-          <div className="h-64">
+          <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie data={dataSrc} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
@@ -90,6 +93,7 @@ const Dashboard = ({ data }: any) => {
           </div>
         </div>
 
+        {/* DISTRIBUIÇÃO GLOBAL */}
         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
           <h3 className="text-lg font-semibold mb-4">Distribuição Global</h3>
           <div className="space-y-4">
@@ -99,7 +103,6 @@ const Dashboard = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {/* Marcador para as cores não aparecerem como erro de 'não utilizado' */}
       <div className="hidden">{COLORS[0]}</div>
     </div>
   );
@@ -125,7 +128,6 @@ const RegionItem = ({ country, count, percent }: any) => (
   </div>
 );
 
-// Exportando como padrão para o App.tsx principal
 export default function App() {
   return <Dashboard data={[]} />;
 }
