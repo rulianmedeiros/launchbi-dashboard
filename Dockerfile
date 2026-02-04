@@ -1,13 +1,5 @@
-# Estágio 1: Build
-FROM node:18-alpine as build-stage
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-# Estágio 2: Servidor Nginx para rodar o sistema
 FROM nginx:stable-alpine
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Copia a pasta dist (que já existe no seu VS Code) para o servidor
+COPY ./dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

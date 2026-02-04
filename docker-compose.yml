@@ -1,11 +1,9 @@
 version: '3'
 services:
   launchbi:
-    image: nginx:alpine
-    container_name: launchbi_app
-    volumes:
-      # MAPEAMENTO ESSENCIAL: Liga a sua pasta dist ao diretório do Nginx
-      - ./dist:/usr/share/nginx/html
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - ruliannet
     labels:
