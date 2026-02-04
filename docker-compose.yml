@@ -3,7 +3,8 @@ services:
   launchbi:
     image: nginx:stable-alpine
     volumes:
-      - ./dist:/usr/share/nginx/html
+      # MAPEAMENTO SIMPLES: Lê da raiz onde você colocou o index.html
+      - ./:/usr/share/nginx/html
     networks:
       - ruliannet
     labels:
