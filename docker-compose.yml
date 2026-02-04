@@ -3,7 +3,6 @@ services:
   launchbi:
     image: nginx:stable-alpine
     volumes:
-      # MAPEAMENTO DIRETO: Pega a pasta dist do Git e coloca no Nginx
       - ./dist:/usr/share/nginx/html
     networks:
       - ruliannet
