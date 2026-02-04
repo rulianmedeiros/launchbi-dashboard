@@ -4,7 +4,7 @@ services:
     image: nginx:alpine
     container_name: launchbi_app
     volumes:
-      # MAPEAMENTO: O Nginx lê a pasta 'dist' que o Vite gerou
+      # O Nginx precisa ler de dentro da pasta dist que você enviou
       - ./dist:/usr/share/nginx/html
     networks:
       - ruliannet
