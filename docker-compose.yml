@@ -1,12 +1,16 @@
+version: '3.8'
 services:
-  db_bi:
-    image: postgres:15
-    container_name: postgres_bi_launch
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password123
-      POSTGRES_DB: bi_lancamento
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+  launchbi:
+    build: .
+    container_name: launchbi_app
+    networks:
+      - ruliannet # Sua rede existente na Hetzner
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.launchbi.rule=Host(`dashboard.rulianmedeiros.com`)"
+      - "traefik.http.routers.launchbi.entrypoints=websecure"
+      - "traefik.http.routers.launchbi.tls=true"
+
+networks:
+  ruliannet:
+    external: true
