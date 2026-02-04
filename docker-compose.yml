@@ -1,9 +1,7 @@
 version: '3'
 services:
   launchbi:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     networks:
       - ruliannet
     labels:
