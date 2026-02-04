@@ -1,10 +1,13 @@
-version: '3.8'
+version: '3'
 services:
   launchbi:
-    build: .
+    image: nginx:alpine
     container_name: launchbi_app
+    volumes:
+      # MAPEAMENTO: O Nginx lê a pasta 'dist' que o Vite gerou
+      - ./dist:/usr/share/nginx/html
     networks:
-      - ruliannet # Sua rede existente na Hetzner
+      - ruliannet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.launchbi.rule=Host(`dashboard.rulianmedeiros.com`)"
